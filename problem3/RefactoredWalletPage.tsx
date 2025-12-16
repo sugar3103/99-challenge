@@ -78,12 +78,12 @@ const WalletPage: React.FC<Props> = (props: Props) => {
 
   // Memoize sorted and filtered balances
   const sortedBalances = useMemo(() => {
-    // First filter out balances with priority <= -99 or amount <= 0
+    // Filter out balances with priority <= -99 or amount <= 0
     const filteredBalances = balances.filter((balance: WalletBalance) => {
       const priority = getPriority(balance.blockchain);
       return priority > -99 && balance.amount > 0;
     });
-    // Then sort by priority (descending)
+    // Sort by priority (descending)
     return filteredBalances.sort((lhs: WalletBalance, rhs: WalletBalance) => {
       const leftPriority = getPriority(lhs.blockchain);
       const rightPriority = getPriority(rhs.blockchain);
